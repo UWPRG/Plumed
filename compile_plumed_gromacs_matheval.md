@@ -13,7 +13,8 @@ cd libmatheval
 mkdir m4
 ```
 2c) Edit Configure.in Files to remove Guile dependency
-vi configure.in
+vi configure.in.
+
 Comment out the following lines (#)
 
 ```bash
@@ -26,6 +27,7 @@ AC_CHECK_LIB([guile], [scm_num2dbl], [AC_DEFINE([HAVE_SCM_NUM2DBL], [1], [Define
  ```
 
 2d) Edit tests/Makefile.am Files to remove Guile dependency
+Comment out the following lines (#)
 vi tests/Makefile.am
 
 ```bash
@@ -44,8 +46,10 @@ autoreconf -fi
 ./configure
 ```
 2f) Disable yywrap in flex in MakeFile
-Change: LEX=flex  in Makefile to
-LEX = flex --noyywrap
+
+Change: LEX=flex  in Makefile to:
+
+LEX=flex --noyywrap
 
 Apply this to the Makefile in libmatheval and the libmatheval/lib
 
@@ -88,7 +92,9 @@ export LD_LIBRARY_PATH="/***path_to_libmatheval***/libmatheval/lib/.libs/:$LD_LI
 make
 ```
 3g) Note commands for setting up PLUMED environment (should be given at end of make)
-Ex:
+
+Example:
+
 export PATH=$PATH:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/bin
 export INCLUDE=$INCLUDE:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/include
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/lib
@@ -118,7 +124,8 @@ cmake .. -DGMX_MPI=OFF -DCMAKE_INSTALL_PREFIX=$GMXINST  -DGMX_DEFAULT_SUFFIX=OFF
 Choice of suffix is up to you.
 
 4d) make -j16 install
-Add the following line to plumed environment script
+Add the following line to plumed environment script:
+
 source /***path_to_GROMACS***/gromacs-5.1.2/bin/bin/GMXRC
 
 note that to run GROMACS the commands are now gmxsuffix followed by the operation
