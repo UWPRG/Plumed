@@ -28,6 +28,7 @@ AC_CHECK_LIB([guile], [scm_num2dbl], [AC_DEFINE([HAVE_SCM_NUM2DBL], [1], [Define
 
 2d) Edit tests/Makefile.am Files to remove Guile dependency
 Comment out the following lines (#)
+
 vi tests/Makefile.am
 
 ```bash
@@ -107,10 +108,11 @@ cd gromacs-version-number
 ```
 4b) Patch Plumed and select version of GROMACS
 ```bash
-plumed path -p
+plumed patch -p
 ```
 
 4c) Setup the build for X-core node you are currently working with.
+
 ```bash
 mkdir bin build_gromacs
 export GMXINST=`pwd`
