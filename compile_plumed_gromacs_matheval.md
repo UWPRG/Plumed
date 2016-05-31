@@ -57,7 +57,9 @@ Apply this to the Makefile in libmatheval and the libmatheval/lib
 2g) Make libmatheval
 
 ```bash
+
 make
+
 ```
 
 ### 3) Compile PLUMED 2
@@ -65,10 +67,12 @@ make
 3a) Unpack Plumed
 
 3b) Configure Plumed
+
 ```bash
-./configure.sh prefix=***path_to_plumed_folder***
+./configure.sh prefix=***path_to_plumed_folder***  enable-modules=adjmat
 ```
-prefix might be different or unnecessary
+
+Enabling adjmat allows for sprint coordinates
 
 3c) Adjust paths to libmatheval in the Makefile.conf
 
@@ -91,6 +95,7 @@ export LD_LIBRARY_PATH="/***path_to_libmatheval***/libmatheval/lib/.libs/:$LD_LI
 3f)Make Plumed
 ```bash
 make
+make install
 ```
 3g) Note commands for setting up PLUMED environment (should be given at end of make)
 
