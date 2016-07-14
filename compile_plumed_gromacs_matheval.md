@@ -102,7 +102,9 @@ make install
 Example:
 
 export PATH=$PATH:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/bin
+
 export INCLUDE=$INCLUDE:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/include
+
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/lib
 ### 4) Install GROMACS
 
