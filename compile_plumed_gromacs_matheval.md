@@ -122,6 +122,7 @@ plumed patch -p
 
 ```bash
 mkdir bin build_gromacs
+cd bin
 export GMXINST=`pwd`
 cd ../build_gromacs/
 cmake .. -DGMX_MPI=ON -DCMAKE_INSTALL_PREFIX=$GMXINST
