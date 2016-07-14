@@ -69,7 +69,7 @@ make
 3b) Configure Plumed
 
 ```bash
-./configure.sh prefix=***path_to_plumed_folder***  enable-modules=adjmat
+./configure.sh --prefix=***path_to_plumed_folder***  --enable-modules=adjmat
 ```
 
 Enabling adjmat allows for sprint coordinates
