@@ -69,7 +69,7 @@ make
 3b) Configure Plumed
 
 ```bash
-./configure.sh prefix=***path_to_plumed_folder***  enable-modules=adjmat
+./configure.sh --prefix=***path_to_plumed_folder***  --enable-modules=adjmat
 ```
 
 Enabling adjmat allows for sprint coordinates
@@ -102,7 +102,9 @@ make install
 Example:
 
 export PATH=$PATH:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/bin
+
 export INCLUDE=$INCLUDE:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/include
+
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/lib
 ### 4) Install GROMACS
 
@@ -120,6 +122,7 @@ plumed patch -p
 
 ```bash
 mkdir bin build_gromacs
+cd bin
 export GMXINST=`pwd`
 cd ../build_gromacs/
 cmake .. -DGMX_MPI=ON -DCMAKE_INSTALL_PREFIX=$GMXINST
