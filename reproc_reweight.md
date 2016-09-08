@@ -41,4 +41,4 @@ More questions checkout PLUMED Manual
 REWEIGHTING [http://plumed.github.io/doc-master/user-doc/html/_m_e_t_a_d.html]
 DRIVER[http://plumed.github.io/doc-master/user-doc/html/driver.html]
 
-Note.: Although the new HILLS and COLVAR (or whatever name chosen) files are created once the calculation is started, they are only updated at the end.
+Note: Although the new HILLS and COLVAR (or whatever name chosen) files are created once the calculation is started, they are only updated at the end.
