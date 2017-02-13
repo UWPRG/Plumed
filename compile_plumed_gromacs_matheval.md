@@ -115,7 +115,7 @@ cd gromacs-version-number
 ```
 4b) Patch Plumed and select version of GROMACS
 ```bash
-plumed patch -p
+plumed patch -p --runtime
 ```
 
 4c) Setup the build for X-core node you are currently working with.
