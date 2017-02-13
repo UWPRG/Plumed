@@ -133,7 +133,8 @@ cmake .. -DGMX_MPI=OFF -DCMAKE_INSTALL_PREFIX=$GMXINST  -DGMX_DEFAULT_SUFFIX=OFF
 ```
 Choice of suffix is up to you.
 
-4d) make -j16 install
+4d) make -j 16  install
+
 Add the following line to plumed environment script:
 
 source /***path_to_GROMACS***/gromacs-5.1.2/bin/bin/GMXRC
