@@ -125,11 +125,11 @@ mkdir bin build_gromacs
 cd bin
 export GMXINST=`pwd`
 cd ../build_gromacs/
-cmake .. -DGMX_MPI=ON -DCMAKE_INSTALL_PREFIX=$GMXINST
+cmake .. -DGMX_MPI=ON -DCMAKE_INSTALL_PREFIX=$GMXINST -DGMX_FFT_LIBRARY=mkl
 ```
 For serial change last line to
 ```bash
-cmake .. -DGMX_MPI=OFF -DCMAKE_INSTALL_PREFIX=$GMXINST  -DGMX_DEFAULT_SUFFIX=OFF -DGMX_BINARY_SUFFIX=_serial -DGMX_LIBS_SUFFIX=_serial
+cmake .. -DGMX_MPI=OFF -DCMAKE_INSTALL_PREFIX=$GMXINST  -DGMX_DEFAULT_SUFFIX=OFF -DGMX_BINARY_SUFFIX=_serial -DGMX_LIBS_SUFFIX=_serial -DGMX_FFT_LIBRARY=mkl
 ```
 Choice of suffix is up to you.
 
