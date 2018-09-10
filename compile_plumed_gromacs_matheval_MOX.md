@@ -4,7 +4,6 @@
           alias icpc="icpc -std=c++11"
           alias icc="icc -std=c++11"
 0.1) module load icc_17-impi_2017 #or newest compiler if downloading a new version
-0.2) source /opt/rh/devtoolset-2/enable (to enable C++11 for gmx2016 and plumed2.4 and beyond)
 ```
 ### 2) Compile Matheval (without GUILE)
 2a) unpack libmatheval (we use the 2013 version)
@@ -42,14 +41,37 @@ matheval_LDADD = $(top_builddir)/lib/libmatheval.la
 matheval_LDFLAGS = $(GUILE_LDFLAGS)
 ```
 
+2e) edit doc/libmatheval.texi
+remove brackets from the following lines 
 
-2e) Configure libmatheval
+```
+@title GNU manual
+@subtitle{Manual edition @value{EDITION}}
+@subtitle{For GNU @code{libmatheval} version @value{VERSION}}
+@subtitle{Last updated @value{UPDATED}}
+@author{Aleksandar Samardzic}
+```
+
+for example change:
+
+```
+@subtitle{Manual edition @value{EDITION}}
+```
+
+to 
+
+```
+@subtitle Manual edition @value{EDITION}
+```
+
+
+2f) Configure libmatheval
 
 ```bash
 autoreconf -fi
 ./configure
 ```
-2f) Disable yywrap in flex in MakeFile
+2g) Disable yywrap in flex in MakeFile
 
 Change: LEX=flex  in Makefile to:
 
@@ -57,7 +79,7 @@ LEX=flex --noyywrap
 
 Apply this to the Makefile in libmatheval and the libmatheval/lib
 
-2g) Make libmatheval
+2h) Make libmatheval
 
 ```bash
 
