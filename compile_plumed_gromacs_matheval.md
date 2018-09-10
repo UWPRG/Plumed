@@ -3,12 +3,11 @@
 0.0) Add these aliases in your .login file (Then log out, log back in)
           alias icpc="icpc -std=c++11"
           alias icc="icc -std=c++11"
-0.1) module load icc_17-impi_2017
+0.1) module load icc_17-impi_2017 #or newest compiler if downloading a new version
 0.2) source /opt/rh/devtoolset-2/enable (to enable C++11 for gmx2016 and plumed2.4 and beyond)
-1) module load icc_15.0.3-impi_5.0.3
 ```
 ### 2) Compile Matheval (without GUILE)
-2a) unpack libmatheval
+2a) unpack libmatheval (we use the 2013 version)
 [libmatheval](http://hg.savannah.gnu.org/hgweb/libmatheval/)
 
 2b) Create Directory m4
@@ -69,25 +68,29 @@ make
 ### 3) Compile PLUMED 2
 
 3a) Unpack Plumed
+```
+tar -xzvf plumed-2.4.2.tgz
+```
 
 3b) Configure Plumed
 
 ```bash
-./configure.sh --prefix=***path_to_plumed_folder***  --enable-modules=adjmat
+cd plumed-2.4.2
+./configure --prefix=***path_to_plumed_folder***  --enable-modules=adjmat #there are other modules you can enable (i.e. all,ves, etc)
 ```
 
 Enabling adjmat allows for sprint coordinates
 
 3c) Adjust paths to libmatheval in the Makefile.conf
 
-Add the following flags to the lines:
+Add the following flags to the lines (append to lines that already exist):
 - DYNAMIC_LIBS= -lmatheval -L/***path_to_libmatheval***/libmatheval/lib/.libs
 - CPPFLAGS= -D__PLUMED_HAS_MATHEVAL=1 -I/***path_to_libmatheval***/libmatheval/lib
 - LDFLAGS=-rdynamic -L/***path_to_libmatheval***/libmatheval/lib/.libs
 
 ***Change for your path***
 
-3d) add the following line to sourceme.sh
+3d) add the following line to sourceme.sh (do not delete the other `export LD_LIBRARY_PATH=` line - add a new one)
 
 export LD_LIBRARY_PATH="/***path_to_libmatheval***/libmatheval/lib/.libs/:$LD_LIBRARY_PATH"
 
@@ -109,13 +112,13 @@ export PATH=$PATH:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/bin
 
 export INCLUDE=$INCLUDE:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/include
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/gscratch/pfaendtner/codes/plumed2-BayesBias/bin/lib/.libs
 ### 4) Install GROMACS
 
 4a) Unpack GROMACS and change to it Directory
 ```bash
-tar -xvz
-cd gromacs-version-number
+tar -xvzf gromacs-2018.3.tar.gz
+cd gromacs-2018.3
 ```
 4b) Patch Plumed and select version of GROMACS
 ```bash
@@ -129,7 +132,8 @@ mkdir bin build_gromacs
 cd bin
 export GMXINST=`pwd`
 cd ../build_gromacs/
-cmake .. -DGMX_MPI=ON -DCMAKE_INSTALL_PREFIX=$GMXINST -DGMX_FFT_LIBRARY=mkl
+module load cmake_3.8 #must use 3.4.3 or higher 
+cmake .. -DGMX_MPI=ON -DCMAKE_INSTALL_PREFIX=$GMXINST # (-DGMX_FFT_LIBRARY=mkl default fftw)
 ```
 For serial change last line to
 ```bash
